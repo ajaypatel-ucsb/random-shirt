@@ -1,0 +1,57 @@
+{
+    "products": [{
+            "productName": "Nike Men's T-Shirt",
+            "price": 4000,
+            "displayPrice": "$40.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/0275/3826/0035/products/sportswear-mens-t-shirt-H2BJlt_1.jpg?v=1588288643"
+        },
+        {
+            "productName": "Supreme Invert S/S Top",
+            "price": 5800,
+            "displayPrice": "$58.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/0275/3826/0035/products/jUmf6GST27Y.jpg?v=1588288051"
+        },
+        {
+            "productName": "UNDEFEATED HEY BATTER S/S TEE",
+            "price": 3600,
+            "displayPrice": "$36.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/0275/3826/0035/products/apparel_tshirts_undefeated_hey-batter-ss-tee_80150.color_black.view_2_1296x_ba1a6622-578e-4740-af80-3b19ff4f3c93.jpg?v=1588288871"
+        },
+        {
+            "productName": "UNDEFEATED PSYCHO CIRCLE S/S TEE",
+            "price": 3600,
+            "displayPrice": "$36.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/0282/5850/products/apparel_tshirts_undefeated_psycho-circle-ss-tee_80145.color_black.view_2_1296x.jpg?v=15853257111"
+        },
+        {
+            "productName": "Comme des Garçons Homme Cdg Logo T-Shirt",
+            "price": 13500,
+            "displayPrice": "$135.00",
+            "imageURL": "https://d2f5l340292seg.cloudfront.net/catalog/product/cache/2/image/1800x/040ec09b1e35df139433887a97daa66f/C/D/CDGH_HE-T009-051-1-3_083_4.jpg"
+        },
+        {
+            "productName": "KITH ON TARGET TEE",
+            "price": 6500,
+            "displayPrice": "$65.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/0094/2252/products/KH3765-100-1_1296x.jpg?v=1587669194"
+        },
+        {
+            "productName": "KITH RECORDS TEE",
+            "price": 6500,
+            "displayPrice": "$65.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/0094/2252/products/KH3760-104.progressive.jpg?v=1587669295"
+        },
+        {
+            "productName": "The Hundreds Simple Adam T-Shirt",
+            "price": 3500,
+            "displayPrice": "$35.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/1520/5960/products/Adam_SS_Black_Back_1194x.jpg?v=1586371757"
+        },
+        {
+            "productName": "The Hundreds Slant T-Shirt",
+            "price": 3500,
+            "displayPrice": "$35.00",
+            "imageURL": "https://cdn.shopify.com/s/files/1/1520/5960/products/Slant_SS_Black_Back_1194x.jpg?v=1586371963"
+        }
+    ]
+}

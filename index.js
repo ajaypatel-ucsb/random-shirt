@@ -26,15 +26,7 @@ function getRandomShirt(min, max) {
 }
 // select shirt details for randomly generate shirt index using result result of getRandomShirt function
 
-let currentShirt = {};
-
-const getNewShirt = () => {
-
-  currentShirt = inventoryData.products[getRandomShirt()];
-  return currentShirt;
-};
-
-
+function shirt() {return inventoryData.products[getRandomShirt()];}
 
 // Create Adyen API Client instance
 const client = new Client({
@@ -68,11 +60,11 @@ app.use(json());
 
 
 app.get("/", (req, res) => {
-  getNewShirt();
+  let s = shirt();
   res.render("index", {
-    name: currentShirt.productName,
-    image: currentShirt.imageURL,
-    price: currentShirt.displayPrice,
+    name: s.productName,
+    image: s.imageURL,
+    price: s.displayPrice,
   });
 });
 /**
@@ -80,8 +72,11 @@ app.get("/", (req, res) => {
  * ??
  */
 app.get("/checkout", (req, res) => {
+  let s = shirt();
   res.render("checkout", {
-    image: currentShirt.imageURL
+    name: s.productName,
+    image: s.imageURL,
+    price: s.displayPrice,
   });
 });
 
@@ -93,6 +88,7 @@ app.get("/checkout", (req, res) => {
  * Returns payment configuration for Adyen Client lib
  */
 app.get("/payment-config", (req, res) => {
+  let s = shirt();
   // Asynchronously call payment methods API
   // Api call completes first
   return (
@@ -100,7 +96,7 @@ app.get("/payment-config", (req, res) => {
       .paymentMethods({
         amount: {
           currency: "USD",
-          value: currentShirt.price,
+          value: s.price,
         },
         countryCode: "US",
         shopperLocale: "en-US",
@@ -120,6 +116,7 @@ app.get("/payment-config", (req, res) => {
 //create /payment and /payment-details endpoint for server to client
 //
 app.post("/payment", (req, res) => {
+  let s = shirt();
   //generate unique orderNumber
   let orderNumber = Date.now();
   // get payment method from req.body
@@ -134,7 +131,7 @@ app.post("/payment", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: currentShirt.price,
+          value: s.price,
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,
@@ -149,6 +146,7 @@ app.post("/payment", (req, res) => {
 });
 
 app.post("/payment-details", (req, res) => {
+  let s = shirt();
   // get payment method from req.body
   const {
     body: { paymentMethod },
@@ -161,7 +159,7 @@ app.post("/payment-details", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: currentShirt.price,
+          value: s.price,
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,

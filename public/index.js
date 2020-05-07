@@ -2,17 +2,15 @@ let originKey
 if (location.host.startsWith('localhost')) {
   originKey = "pub.v2.8115650120946270.aHR0cDovL2xvY2FsaG9zdDo4MDAw.zkoVizqsv4uttIICWCxh7zQ8yon0QwaISV5QrztZYE4"
  } else {
-  originKey = "pub.v2.8115650120946270.aHR0cHM6Ly9wb2xhci1zYW5kcy00OTI0Ni5oZXJva3VhcHAuY29t.8Sqv54GbgTTCSeXxGDdwy6W6kk8XCPIt_2trwYNkZbs"
+  originKey = "pub.v2.8115650120946270.aHR0cHM6Ly9wb2xhci1zYW5kcy00OTI0Ni5oZXJva3VhcHAuY29t.8Sqv54GbgTTCSeXxGDdwy6W6kk8XCPIt_2trwYNkZb"
  }
-
 // Config for Adyen Checkout Module
 const configuration = {
   // Set to null to be replaced when we get the server response
   paymentMethodsResponse: null,
   
   //origin key must be unique per host
-  originKey: 
-    "pub.v2.8115650120946270.aHR0cDovL2xvY2FsaG9zdDo4MDAw.zkoVizqsv4uttIICWCxh7zQ8yon0QwaISV5QrztZYE4",
+  originKey: originKey,
   locale: "en-US",
   environment: "test",
   onSubmit: (state, dropin) => {

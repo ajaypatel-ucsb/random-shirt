@@ -7,6 +7,7 @@ const port = process.env.PORT || "8000";
 const jquery = require("jquery");
 const { Client, Config, CheckoutAPI } = require("@adyen/api-library");
 
+
 // import body parser module to parse json request body
 const { json } = require("body-parser");
 
@@ -24,7 +25,17 @@ function getRandomShirt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 // select shirt details for randomly generate shirt index using result result of getRandomShirt function
-function shirt() {return inventoryData.products[getRandomShirt()];}
+
+let currentShirt = {};
+
+const getNewShirt = () => {
+
+  currentShirt = inventoryData.products[getRandomShirt()];
+  return currentShirt;
+};
+
+
+
 // Create Adyen API Client instance
 const client = new Client({
   apiKey: ADYEN_API_KEY,
@@ -50,23 +61,18 @@ app.use(json());
 
 
 //generate random shirt function
-app.get("/", (req, res) => {
-  let s = shirt();
-  res.render("index", {
-    name: s.productName,
-    image: s.imageURL,
-    price: s.displayPrice,
-  });
-});
 /**
  * GET /
  * Returns random shirt to front end
  */
+
+
 app.get("/", (req, res) => {
+  getNewShirt();
   res.render("index", {
-    name: shirt.productName,
-    image: shirt.imageURL,
-    price: shirt.displayPrice,
+    name: currentShirt.productName,
+    image: currentShirt.imageURL,
+    price: currentShirt.displayPrice,
   });
 });
 /**
@@ -75,11 +81,12 @@ app.get("/", (req, res) => {
  */
 app.get("/checkout", (req, res) => {
   res.render("checkout", {
-    name: shirt.productName,
-    image: shirt.imageURL,
-    price: shirt.displayPrice,
+    image: currentShirt.imageURL
   });
 });
+
+
+
 /**
  * GET /payment-config
  *
@@ -93,7 +100,7 @@ app.get("/payment-config", (req, res) => {
       .paymentMethods({
         amount: {
           currency: "USD",
-          value: shirt.price,
+          value: currentShirt.price,
         },
         countryCode: "US",
         shopperLocale: "en-US",
@@ -127,7 +134,7 @@ app.post("/payment", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: shirt.price,
+          value: currentShirt.price,
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,
@@ -154,7 +161,7 @@ app.post("/payment-details", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: shirt.price,
+          value: currentShirt.price,
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,
@@ -167,6 +174,7 @@ app.post("/payment-details", (req, res) => {
       })
   );
 });
+
 /**
  * Server Activation
  */

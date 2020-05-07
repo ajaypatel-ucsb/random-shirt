@@ -89,7 +89,6 @@ app.get("/checkout", (req, res) => {
  * Returns payment configuration for Adyen Client lib
  */
 app.get("/payment-config", (req, res) => {
-  let s = shirt();
   // Asynchronously call payment methods API
   // Api call completes first
   return (
@@ -97,7 +96,7 @@ app.get("/payment-config", (req, res) => {
       .paymentMethods({
         amount: {
           currency: "USD",
-          value: s.price
+          value: 2000
         },
         countryCode: "US",
         shopperLocale: "en-US",
@@ -132,7 +131,7 @@ app.post("/payment", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: s.price
+          value: 2000
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,
@@ -147,7 +146,8 @@ app.post("/payment", (req, res) => {
 });
 
 app.post("/payment-details", (req, res) => {
-  let s = shirt();
+  //generate unique orderNumber
+  let orderNumber = Date.now();
   // get payment method from req.body
   const {
     body: { paymentMethod },
@@ -160,7 +160,7 @@ app.post("/payment-details", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: s.price
+          value: 2000
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,

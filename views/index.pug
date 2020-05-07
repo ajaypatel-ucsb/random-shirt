@@ -15,6 +15,7 @@ html(lang='en')
       .ui.table {border-radius: 40px}
       .ui.table tfoot tr:first-child>th:only-child{border: 3px solid; font-size: 18px; font-weight: bold;}
       .ui.table tfoot th:hover{background-color: #ed485f; color: #420080; cursor: pointer;}
+      .adyen-checkout__dropin, .adyen-checkout__dropin *, .adyen-checkout__dropin :after, .adyen-checkout__dropin :before{text-align: left;}
 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
     script(src='/index.js')
@@ -24,17 +25,21 @@ html(lang='en')
     h1.ui.center.aligned.header Buy A Random Shirt!
     .ui.container
       table.ui.celled.table.center.aligned
+        
         thead
               td 
-                img.ui.mini.rounded.image(src=image)
+                img.ui.mini.rounded.image(src=image).
+                tr
               td #{name}
-              td #{price}
+              td Value: #{price}
               td Size: ¯\_(ツ)_/¯ 
+              td Pay: $20.00
         tfoot.buybtn
-          #dropin-container
+          //#dropin-container
           tr 
             th(colspan='6') BUY NOW!
-    footer
+             #dropin-container
+    footer 
       p © #{new Date().getFullYear()} Ajay's Random Shirts
     script(src='https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.7.0/adyen.js', integrity='sha384-aRaL1/W2ASAwZpEWmiHJJAhcc5h+pwDywrocWjla8oCSJaMlY4MC2hOPvAaOcOCq', crossorigin='anonymous')
 

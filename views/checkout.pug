@@ -16,6 +16,7 @@ html(lang='en')
       .ui.table tfoot tr:first-child>th:only-child{border: 3px solid; font-size: 18px; font-weight: bold;}
       .ui.table tfoot th:hover{background-color: #ed485f; color: #420080;}
       h2{text-align: center;}
+      .ui.table td{font-size: 20px;}
 
     script(src='https://checkoutshopper-test.adyen.com/checkoutshopper/sdk/3.7.0/adyen.js', integrity='sha384-aRaL1/W2ASAwZpEWmiHJJAhcc5h+pwDywrocWjla8oCSJaMlY4MC2hOPvAaOcOCq', crossorigin='anonymous')
     
@@ -25,8 +26,8 @@ html(lang='en')
     .ui.container
       table.ui.celled.table.center.aligned
         thead
-              td 
-                img.ui.mini.rounded.image(src=image)
+              td You Paid $20.00
+                //img.ui.mini.rounded.image(src=image)
         tfoot
           tr 
             th(colspan='6') Thanks for your purchase, hope it fits! ¯\_(ツ)_/¯ 

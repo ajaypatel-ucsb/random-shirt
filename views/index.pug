@@ -10,7 +10,7 @@ html(lang='en')
     style.
       table.ui.celled img { display: inline-block; }
       footer { margin: 35px 0 15px 0; text-align: center }
-      .ui.table td .image, .ui.table td .image img, .ui.table th .image, .ui.table th .image img { min-width: 450px;}
+      .ui.table td .image, .ui.table td .image img, .ui.table th .image, .ui.table th .image img { min-width: 350px;}
       .ui.table tfoot th {border-bottom-right-radius: 37px !important; border-bottom-left-radius: 37px !important; background: #420080; color: #ed485f;}
       .ui.table {border-radius: 40px}
       .ui.table tfoot tr:first-child>th:only-child{border: 3px solid; font-size: 18px; font-weight: bold;}
@@ -31,9 +31,10 @@ html(lang='en')
                 img.ui.mini.rounded.image(src=image).
                 tr
               td #{name}
+              td Pay: $20.00
               td Value: #{price}
               td Size: ¯\_(ツ)_/¯ 
-              td Pay: $20.00
+              
         tfoot.buybtn
           //#dropin-container
           tr 

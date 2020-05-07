@@ -41,9 +41,11 @@ config.merchantAccount = "TestAccountNY";
 client.setEnvironment("TEST");
 // Create new Checkout API Instance
 const checkout = new CheckoutAPI(client);
-/**
- * Routes Definitions
- */
+
+//
+//  Routes Definitions
+//
+
 // Set pug view
 app.set("view engine", "pug");
 // Set path to serve static files
@@ -54,12 +56,6 @@ app.use(json());
 
 
 //generate random shirt function
-/**
- * GET /
- * Returns random shirt to front end
- */
-
-
 app.get("/", (req, res) => {
   let s = shirt();
   res.render("index", {
@@ -68,10 +64,8 @@ app.get("/", (req, res) => {
     price: s.displayPrice
   });
 });
-/**
- * GET /checkout
- * ??
- */
+
+// GET parameters for checkout page
 app.get("/checkout", (req, res) => {
   let s = shirt();
   res.render("checkout", {
@@ -83,11 +77,10 @@ app.get("/checkout", (req, res) => {
 
 
 
-/**
- * GET /payment-config
- *
- * Returns payment configuration for Adyen Client lib
- */
+//
+// GET /payment-config
+// Returns payment configuration for Adyen Client lib
+//
 app.get("/payment-config", (req, res) => {
   // Asynchronously call payment methods API
   // Api call completes first
@@ -101,7 +94,7 @@ app.get("/payment-config", (req, res) => {
         countryCode: "US",
         shopperLocale: "en-US",
         channel: "Web",
-        merchantAccount: config.merchantAccount,
+        merchantAccount: config.merchantAccount
       })
       //THEN tell the server to return a json response with the config
       .then((config) => res.json(config))
@@ -112,7 +105,7 @@ app.get("/payment-config", (req, res) => {
   );
 });
 
-
+//
 //create /payment and /payment-details endpoint for server to client
 //
 app.post("/payment", (req, res) => {
@@ -136,7 +129,7 @@ app.post("/payment", (req, res) => {
         reference: orderNumber,
         paymentMethod: paymentMethod,
         returnUrl: "http://localhost:8000/checkout",
-        merchantAccount: config.merchantAccount,
+        merchantAccount: config.merchantAccount
       })
       .then((config) => res.json(config))
       .catch((err) => {
@@ -165,7 +158,7 @@ app.post("/payment-details", (req, res) => {
         reference: orderNumber,
         paymentMethod: paymentMethod,
         returnUrl: "http://localhost:8000/checkout",
-        merchantAccount: config.merchantAccount,
+        merchantAccount: config.merchantAccount
       })
       .then((config) => res.json(config))
       .catch((err) => {
@@ -174,17 +167,8 @@ app.post("/payment-details", (req, res) => {
   );
 });
 
-/**
- * Server Activation
- */
-// Binds server to given PORT - good idea to base this on an environment variable for deployment purposes
+//Server Activation
+// Bind server to given PORT
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}...`);
-  //console.log(shirt.productName);
-  //console.log(shirt);
-  // paymentMethodsResponse.then(res => {
-  //   console.log('checkoutMethods:', res);
-  //   console.log('checkoutConfigurations:',configuration);
-  //   //console.log('adyenCheckout:', adyenCheckout);
-  // })
 });

@@ -24,7 +24,7 @@ function getRandomShirt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 // select shirt details for randomly generate shirt index using result result of getRandomShirt function
-let shirt = inventoryData.products[getRandomShirt()];
+function shirt() {return inventoryData.products[getRandomShirt()];}
 // Create Adyen API Client instance
 const client = new Client({
   apiKey: ADYEN_API_KEY,
@@ -48,9 +48,19 @@ app.use(express.static("public"));
 // add parser middleware to parse json requests
 app.use(json());
 
+
+//generate random shirt function
+app.get("/", (req, res) => {
+  let s = shirt();
+  res.render("index", {
+    name: s.productName,
+    image: s.imageURL,
+    price: s.displayPrice,
+  });
+});
 /**
  * GET /
- * Returns random shirt
+ * Returns random shirt to front end
  */
 app.get("/", (req, res) => {
   res.render("index", {
@@ -98,12 +108,13 @@ app.get("/payment-config", (req, res) => {
       })
   );
 });
-//generate unique orderNumber
-let orderNumber = Date.now();
+
 
 //create /payment and /payment-details endpoint for server to client
 //
 app.post("/payment", (req, res) => {
+  //generate unique orderNumber
+  let orderNumber = Date.now();
   // get payment method from req.body
   const {
     body: { paymentMethod },
@@ -162,8 +173,8 @@ app.post("/payment-details", (req, res) => {
 // Binds server to given PORT - good idea to base this on an environment variable for deployment purposes
 app.listen(port, () => {
   console.log(`Listening to requests on http://localhost:${port}...`);
-  console.log(shirt.productName);
-  console.log(shirt);
+  //console.log(shirt.productName);
+  //console.log(shirt);
   // paymentMethodsResponse.then(res => {
   //   console.log('checkoutMethods:', res);
   //   console.log('checkoutConfigurations:',configuration);

@@ -28,6 +28,7 @@ function getRandomShirt(min, max) {
 
 function shirt() {return inventoryData.products[getRandomShirt()];}
 
+
 // Create Adyen API Client instance
 const client = new Client({
   apiKey: ADYEN_API_KEY,
@@ -64,7 +65,7 @@ app.get("/", (req, res) => {
   res.render("index", {
     name: s.productName,
     image: s.imageURL,
-    price: s.displayPrice,
+    price: s.displayPrice
   });
 });
 /**
@@ -76,7 +77,7 @@ app.get("/checkout", (req, res) => {
   res.render("checkout", {
     name: s.productName,
     image: s.imageURL,
-    price: s.displayPrice,
+    price: s.displayPrice
   });
 });
 
@@ -96,7 +97,7 @@ app.get("/payment-config", (req, res) => {
       .paymentMethods({
         amount: {
           currency: "USD",
-          value: s.price,
+          value: s.price
         },
         countryCode: "US",
         shopperLocale: "en-US",
@@ -131,7 +132,7 @@ app.post("/payment", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: s.price,
+          value: s.price
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,
@@ -159,7 +160,7 @@ app.post("/payment-details", (req, res) => {
       .payments({
         amount: {
           currency: "USD",
-          value: s.price,
+          value: s.price
         },
         reference: orderNumber,
         paymentMethod: paymentMethod,
